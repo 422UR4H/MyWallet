@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import SignTemplate from "../components/templates/SignTemplate.jsx";
 
 
 export default function SigninPage() {
@@ -16,8 +16,9 @@ export default function SigninPage() {
     }, []);
 
     return (
-        <>
-
-        </>
+        <SignTemplate textButton="Entrar" textLink="Primeira vez? Cadastre-se!">
+            <input type="email" placeholder="E-mail" required />
+            <input type="password" placeholder="Senha" required />
+        </SignTemplate>
     );
 }

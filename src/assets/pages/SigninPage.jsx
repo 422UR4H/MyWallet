@@ -8,9 +8,9 @@ export default function SigninPage({ token, setToken }) {
     const navigate = useNavigate();
     const [form, setForm] = useState({ email: "", password: "" })
 
-    function handleForm(e) {
+    function handleForm({ target }) {
         // this defines an object --> { string property: value }
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [target.name]: target.value });
     }
 
     function handleSubmit(e) {
@@ -28,7 +28,7 @@ export default function SigninPage({ token, setToken }) {
 
     useEffect(() => {
         if (token) {
-            // aqui outra requisição deve ser feita, na verdade. não a de login
+            // aqui outra requisição deve ser feita na verdade. não a de login
             signIn(form)
                 .then(() => {
                     navigate("/home");

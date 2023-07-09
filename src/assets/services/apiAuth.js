@@ -4,17 +4,14 @@ function signIn(body) {
     return axios.post(`${import.meta.env.VITE_API_URL}/sign-in`, body)
 }
 
-function signUp(password, confirm, email, name) {
-    if (password !== confirm) {
-        alert("As senhas não conferem!");
-    } else {
-        axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, { name, email, password })
-            .then(() => {
-                alert("Cadastro realizado com sucesso!")
-                navigate("/");
-            })
-            .catch((err) => handleApiError(err));
-    }
+function signUp(body) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, body)
+}
+
+function signOut(token) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, {
+        headers: { "Authorization": `Bearer ${token}` }
+    });
 }
 
 const apiAuth = { signIn, signUp };

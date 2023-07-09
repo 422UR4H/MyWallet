@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
 
 
 export default function SignupPage() {
     const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirm, setConfirm] = useState("");
+    const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
 
-    function signUp(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
-        if (password !== confirm) {
-            alert("As senhas não conferem!");
+        if (form.password !== form.confirm) {
+            alert("as senhas não conferem!");
         } else {
-            axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, { name, email, password })
+            const { name, email, password } = form;
+            signUp({ name, email, password })
                 .then(() => {
                     alert("Cadastro realizado com sucesso!")
                     navigate("/");
@@ -27,36 +24,44 @@ export default function SignupPage() {
         }
     }
 
+    function handleForm({ target }) {
+        setForm({ ...form, [target.name]: target.value });
+    }
+
     return (
         <SignTemplate
             textButton="Cadastrar"
             textLink="Já tem uma conta? Entre agora!"
             routeLink="/"
-            onSubmit={signUp}>
+            onSubmit={handleSubmit}>
 
             <input
+                name="name"
                 type="text"
                 placeholder="Nome"
-                value={name}
-                onChange={({ target }) => setName(target.value)}
+                value={form.name}
+                onChange={handleForm}
                 required />
             <input
+                name="email"
                 type="email"
                 placeholder="E-mail"
-                value={email}
-                onChange={({ target }) => setEmail(target.value)}
+                value={form.email}
+                onChange={handleForm}
                 required />
             <input
+                name="password"
                 type="password"
                 placeholder="Senha"
-                value={password}
-                onChange={({ target }) => setPassword(target.value)}
+                value={form.password}
+                onChange={handleForm}
                 required />
             <input
+                name="confirm"
                 type="password"
                 placeholder="Confirme a senha"
-                value={confirm}
-                onChange={({ target }) => setConfirm(target.value)}
+                value={form.confirm}
+                onChange={handleForm}
                 required />
 
         </SignTemplate>

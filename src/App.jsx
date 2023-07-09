@@ -4,6 +4,7 @@ import SigninPage from "./assets/pages/SigninPage.jsx";
 import SignupPage from "./assets/pages/SignupPage.jsx";
 import HomePage from "./assets/pages/HomePage.jsx";
 import NewTransactionPage from "./assets/pages/NewTransactionPage.jsx";
+import ErrorPage from "./assets/pages/ErrorPage.jsx";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
                 <Route path="/cadastro" element={<SignupPage />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/nova-transacao/:tipo" element={<NewTransactionPage />} />
+                <Route path="/*" element={<ErrorPage />} />
             </Routes>
         </BrowserRouter>
     );

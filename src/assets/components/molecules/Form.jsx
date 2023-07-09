@@ -1,10 +1,10 @@
-import Button from "../atoms/Button.jsx";
+import ButtonSubmit from "../atoms/ButtonSubmit.jsx";
 
-export default function Form({ children, textButton }) {
+export default function Form({ children, textButton, routeButton, onSubmit }) {
     return (
-        <form>
+        <form onSubmit={onSubmit}>
             {children}
-            <Button type="submit">{textButton}</Button>
+            <ButtonSubmit routeButton={routeButton}>{textButton}</ButtonSubmit>
         </form>
     );
 }

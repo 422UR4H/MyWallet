@@ -8,7 +8,7 @@ export default function SigninPage() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/`)
             .then((res) => {
-            
+                
             })
             .catch((err) => {
                 
@@ -16,7 +16,7 @@ export default function SigninPage() {
     }, []);
 
     return (
-        <SignTemplate textButton="Entrar" textLink="Primeira vez? Cadastre-se!">
+        <SignTemplate textButton="Entrar" textLink="Primeira vez? Cadastre-se!" routeLink="/cadastro">
             <input type="email" placeholder="E-mail" required />
             <input type="password" placeholder="Senha" required />
         </SignTemplate>

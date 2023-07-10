@@ -11,8 +11,8 @@ import TransactionButton from "../components/atoms/TransactionButton.jsx";
 
 export default function HomePage() {
     const { token } = useToken();
-    const { name, setName } = useState("");
-    const { transactions, setTransactions } = useState([]);
+    const [name, setName] = useState("");
+    const [transactions, setTransactions] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,26 +22,22 @@ export default function HomePage() {
             api.getTransactions(token)
                 .then((res) => {
                     setTransactions(res.data);
+
+                    api.getUser(token)
+                        .then((res) => setName(res.data.name))
+                        .catch((err) => handleApiError(err));
                 })
                 .catch((err) => {
                     handleApiError(err);
                 });
 
-            api.getUser(token)
-                .then((res) => {
-                    setName(res.data.name);
-                })
-                .catch((err) => {
-                    console.err(err);
-                    handleApiError(err);
-                })
         }
     }, []);
 
     return (
         <MainTemplate text={`Olá, ${name}`}>
             <LogoutButton />
-            <TransactionsTable />
+            <TransactionsTable transactions={transactions} />
             <div>
                 <TransactionButton type="entrada" />
                 <TransactionButton type="saida" />

@@ -1,4 +1,5 @@
 export default function handleApiError(err) {
-    console.error(err.response.data);
-    alert(err.response.data);
+    // test and alelrt when err is undefined
+    console.error(err.response);
+    alert(err.response?.data);
 }

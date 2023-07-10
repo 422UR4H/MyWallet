@@ -17,5 +17,13 @@ export function getTransactions(token) {
     return axios.get(`${import.meta.env.VITE_API_URL}/transactions`, config(token));
 }
 
-const api = { signIn, signUp, signOut, getTransactions };
+export function postTransaction(type, body, token) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/transaction/${type}`, body, config(token));
+}
+
+export function getUser(token) {
+    return axios.get(`${import.meta.env.VITE_API_URL}/user`, config(token));
+}
+
+const api = { signIn, signUp, signOut, getTransactions, postTransaction, getUser };
 export default api;

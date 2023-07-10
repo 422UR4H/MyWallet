@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import handleType from "../../scripts/handleType.js";
 
 export default function TransactionButton({ type }) {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function TransactionButton({ type }) {
     }
     return (
         <button onClick={handleClick}>
-            {type === "entrada" ? "Nova entrada" : "Nova saída"}
+            Nova {handleType(type)}
         </button>
     )
 }

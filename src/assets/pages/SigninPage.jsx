@@ -13,6 +13,7 @@ export default function SigninPage() {
 
     useEffect(() => {
         if (token) {
+            console.log(token)
             // aqui outra requisição deve ser feita na verdade. não a de login
             // signIn(form)
             //     .then(() => {

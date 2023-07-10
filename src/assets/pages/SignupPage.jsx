@@ -24,7 +24,7 @@ export default function SignupPage() {
         }
     }
 
-    function handleForm({ target }) {
+    function handleChange({ target }) {
         setForm({ ...form, [target.name]: target.value });
     }
 
@@ -40,28 +40,28 @@ export default function SignupPage() {
                 type="text"
                 placeholder="Nome"
                 value={form.name}
-                onChange={handleForm}
+                onChange={handleChange}
                 required />
             <input
                 name="email"
                 type="email"
                 placeholder="E-mail"
                 value={form.email}
-                onChange={handleForm}
+                onChange={handleChange}
                 required />
             <input
                 name="password"
                 type="password"
                 placeholder="Senha"
                 value={form.password}
-                onChange={handleForm}
+                onChange={handleChange}
                 required />
             <input
                 name="confirm"
                 type="password"
                 placeholder="Confirme a senha"
                 value={form.confirm}
-                onChange={handleForm}
+                onChange={handleChange}
                 required />
 
         </SignTemplate>

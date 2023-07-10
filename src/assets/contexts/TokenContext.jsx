@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const TokenContext = createContext('');
+const TokenContext = createContext({});
 
 export function TokenProvider({ children }) {
     const lsToken = JSON.parse(localStorage.getItem("token"));
@@ -10,20 +10,14 @@ export function TokenProvider({ children }) {
         setToken(token);
         localStorage.setItem("token", JSON.stringify(token));
     }
-    // useEffect(() => {
-    //     const lsToken = localStorage.getItem("token");
-        // const navigate = useNavigate();
 
-    //     if (lsToken === null) {
-    //         navigate("/");
-    //     } else {
-    //         setToken(lsToken);
-    //         navigate("/home");
-    //     }
-    // }, []);
+    function logout(token) {
+        setToken(null);
+        localStorage.removeItem("token");
+    }
 
     return (
-        <TokenContext.Provider value={{ token, login }}>
+        <TokenContext.Provider value={{ token, login, logout }}>
             {children}
         </TokenContext.Provider>
     );

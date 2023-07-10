@@ -10,10 +10,10 @@ import TransactionButton from "../components/atoms/TransactionButton.jsx";
 
 
 export default function HomePage() {
+    const navigate = useNavigate();
     const { token } = useToken();
     const [name, setName] = useState("");
     const [transactions, setTransactions] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (!token) {
@@ -24,7 +24,7 @@ export default function HomePage() {
                     setTransactions(res.data);
 
                     api.getUser(token)
-                        .then((res) => setName(res.data.name))
+                        .then((resUser) => setName(resUser.data.name))
                         .catch((err) => handleApiError(err));
                 })
                 .catch((err) => {

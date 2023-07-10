@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../components/molecules/Form.jsx";
 import api from "../services/api.js";
@@ -12,6 +12,10 @@ export default function NewTransactionPage() {
     const { token } = useToken();
     const { tipo } = useParams();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!token) navigate("/")
+    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();

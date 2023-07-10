@@ -2,17 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "../../services/api.js";
 import useToken from "../../hooks/useToken.js";
 
-export default function LogoButton() {
+export default function LogoutButton() {
     const navigate = useNavigate();
-    const { token } = useToken();
+    const { token, logout } = useToken();
 
     function handleClick() {
-        signOut(token).catch((err) => console.err(err));
-        localStorage.removeItem("token");
-        navigate("/");
+        signOut(token)
+            .then(() => {
+                logout();
+                navigate("/");
+            })
+            .catch((err) => {
+                console.error(err);
+                logout();
+                navigate("/");
+            })
     }
 
     return (
-        <button onClick={handleClick}></button>
+        <button onClick={handleClick}>EXIT</button>
     );
 }

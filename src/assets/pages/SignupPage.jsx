@@ -5,8 +5,8 @@ import handleApiError from "../scripts/handleApiError.js";
 
 
 export default function SignupPage() {
-    const navigate = useNavigate();
     const [form, setForm] = useState({ name: "", email: "", password: "", confirm: "" });
+    const navigate = useNavigate();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,7 +17,7 @@ export default function SignupPage() {
             const { name, email, password } = form;
             signUp({ name, email, password })
                 .then(() => {
-                    alert("Cadastro realizado com sucesso!")
+                    alert("Cadastro realizado com sucesso!");
                     navigate("/");
                 })
                 .catch((err) => handleApiError(err));

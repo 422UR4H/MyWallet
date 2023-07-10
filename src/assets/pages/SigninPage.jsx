@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import SignTemplate from "../components/templates/SignTemplate.jsx";
+import { useContext, useEffect, useState } from "react";
+import { TokenContext } from "../contexts/TokenContext.js";
 import { useNavigate } from "react-router-dom";
-import handleApiError from "../scripts/handleApiError.js";
 import { signIn } from "../services/apiAuth.js";
+import SignTemplate from "../components/templates/SignTemplate.jsx";
+import handleApiError from "../scripts/handleApiError.js";
 
-export default function SigninPage({ token, setToken }) {
+
+export default function SigninPage() {
     const navigate = useNavigate();
-    const [form, setForm] = useState({ email: "", password: "" })
+    const [form, setForm] = useState({ email: "", password: "" });
+    const { token, setToken } = useContext(TokenContext);
 
     function handleForm({ target }) {
-        // this defines an object --> { string property: value }
         setForm({ ...form, [target.name]: target.value });
     }
 
@@ -18,6 +20,7 @@ export default function SigninPage({ token, setToken }) {
 
         signIn(form)
             .then(({ data }) => {
+                localStorage.setItem("token", data.token);
                 setToken(data.token);
                 navigate("/home");
             })
@@ -26,19 +29,19 @@ export default function SigninPage({ token, setToken }) {
             });
     }
 
-    useEffect(() => {
-        if (token) {
-            // aqui outra requisição deve ser feita na verdade. não a de login
-            signIn(form)
-                .then(() => {
-                    navigate("/home");
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                    alert("Faça login para continuar");
-                });
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (token) {
+    //         // aqui outra requisição deve ser feita na verdade. não a de login
+    //         signIn(form)
+    //             .then(() => {
+    //                 navigate("/home");
+    //             })
+    //             .catch((err) => {
+    //                 console.log(err.response.data);
+    //                 alert("Faça login para continuar");
+    //             });
+    //     }
+    // }, []);
 
     return (
         <SignTemplate

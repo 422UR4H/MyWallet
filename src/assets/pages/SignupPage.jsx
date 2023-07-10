@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
+import api from "../services/api.js";
 
 
 export default function SignupPage() {
@@ -15,7 +16,7 @@ export default function SignupPage() {
             alert("as senhas não conferem!");
         } else {
             const { name, email, password } = form;
-            signUp({ name, email, password })
+            api.signUp({ name, email, password })
                 .then(() => {
                     alert("Cadastro realizado com sucesso!");
                     navigate("/");

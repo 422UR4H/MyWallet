@@ -4,13 +4,13 @@ import SignupPage from "./assets/pages/SignupPage.jsx";
 import HomePage from "./assets/pages/HomePage.jsx";
 import NewTransactionPage from "./assets/pages/NewTransactionPage.jsx";
 import ErrorPage from "./assets/pages/ErrorPage.jsx";
-import TokenProvider from "./assets/contexts/TokenContext.js";
+import { TokenProvider } from "./assets/contexts/TokenContext.jsx";
 
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <TokenProvider>
+        <TokenProvider>
+            <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<SigninPage />} />
                     <Route path="/cadastro" element={<SignupPage />} />
@@ -18,7 +18,7 @@ export default function App() {
                     <Route path="/nova-transacao/:tipo" element={<NewTransactionPage />} />
                     <Route path="/*" element={<ErrorPage />} />
                 </Routes>
-            </TokenProvider>
-        </BrowserRouter>
+            </BrowserRouter>
+        </TokenProvider>
     );
 }

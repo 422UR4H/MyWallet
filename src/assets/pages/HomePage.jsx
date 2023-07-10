@@ -3,19 +3,19 @@ import axios from "axios";
 
 export default function HomePage() {
 
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/`)
-            .then((res) => {
+    // useEffect(() => {
+    //     axios.get(`${import.meta.env.VITE_API_URL}/`)
+    //         .then((res) => {
 
-            })
-            .catch((err) => {
+    //         })
+    //         .catch((err) => {
 
-            });
-    }, []);
+    //         });
+    // }, []);
 
     return (
         <>
-
+            Home
         </>
     );
 }

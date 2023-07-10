@@ -1,18 +1,17 @@
 import axios from "axios";
+import config from "./configToken.js";
 
-function signIn(body) {
-    return axios.post(`${import.meta.env.VITE_API_URL}/sign-in`, body)
+export function signIn(body) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-in`, body);
 }
 
-function signUp(body) {
-    return axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, body)
+export function signUp(body) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, body);
 }
 
-function signOut(token) {
-    return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, {
-        headers: { "Authorization": `Bearer ${token}` }
-    });
+export function signOut(token) {
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, config(token));
 }
 
-const apiAuth = { signIn, signUp };
-export default apiAuth;
+// const apiAuth = { signIn, signUp, signOut };
+// export default apiAuth;

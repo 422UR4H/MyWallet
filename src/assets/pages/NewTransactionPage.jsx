@@ -32,7 +32,12 @@ export default function NewTransactionPage() {
     return (
         <>
             <h1>Nova {handleType(tipo)}</h1>
-            <Form textButton={`Salvar ${handleType(tipo)}`} onSubmit={handleSubmit}>
+
+            <Form
+                textButton={`Salvar ${handleType(tipo)}`}
+                onSubmit={handleSubmit}
+                dataTestButton="registry-save"
+            >
                 <input
                     name="amount"
                     type="number"
@@ -40,6 +45,7 @@ export default function NewTransactionPage() {
                     value={form.amount}
                     onChange={handleChange}
                     required
+                    data-test="registry-amount-input"
                 />
                 <input
                     name="text"
@@ -48,6 +54,7 @@ export default function NewTransactionPage() {
                     value={form.text}
                     onChange={handleChange}
                     required
+                    data-test="registry-name-input"
                 />
             </Form>
         </>

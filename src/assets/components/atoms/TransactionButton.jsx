@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import handleType from "../../scripts/handleType.js";
 
-export default function TransactionButton({ type }) {
+export default function TransactionButton({ type, dataTest }) {
     const navigate = useNavigate();
 
     function handleClick() {
@@ -12,7 +12,7 @@ export default function TransactionButton({ type }) {
         }
     }
     return (
-        <button onClick={handleClick}>
+        <button onClick={handleClick} data-test={dataTest}>
             Nova {handleType(type)}
         </button>
     )

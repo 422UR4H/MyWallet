@@ -19,7 +19,8 @@ export default function TransactionsTable({ transactions }) {
                 {transactions?.map(t => <Transaction key={t._id} {...t} />)}
             </div>
             <div>
-                <span>SALDO</span><span className="balance">{getBalance()}</span>
+                <span>SALDO</span>
+                <span className="balance" data-test="total-amount">{getBalance()}</span>
             </div>
         </>
     )

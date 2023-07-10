@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api.js";
 import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
 import useToken from "../hooks/useToken.js";
+import api from "../services/api.js";
 
 
 export default function SigninPage() {
@@ -14,15 +14,7 @@ export default function SigninPage() {
     useEffect(() => {
         if (token) {
             console.log(token)
-            // aqui outra requisição deve ser feita na verdade. não a de login
-            // signIn(form)
-            //     .then(() => {
-                    navigate("/home");
-                // })
-                // .catch((err) => {
-                //     console.log(err.response.data);
-                //     alert("Faça login para continuar");
-                // });
+            navigate("/home");
         }
     }, []);
 
@@ -49,6 +41,7 @@ export default function SigninPage() {
             textLink="Primeira vez? Cadastre-se!"
             routeLink="/cadastro"
             onSubmit={handleSubmit}
+            dataTestButton="sign-in-submit"
         >
             <input
                 name="email"
@@ -57,6 +50,7 @@ export default function SigninPage() {
                 value={form.email}
                 onChange={handleChange}
                 required
+                data-test="email"
             />
             <input
                 name="password"
@@ -65,6 +59,7 @@ export default function SigninPage() {
                 value={form.password}
                 onChange={handleChange}
                 required
+                data-test="password"
             />
         </SignTemplate>
     );

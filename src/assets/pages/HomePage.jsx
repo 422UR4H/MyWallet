@@ -35,12 +35,12 @@ export default function HomePage() {
     }, []);
 
     return (
-        <MainTemplate text={`Olá, ${name}`}>
+        <MainTemplate text={`Olá, ${name}`} dataTest="user-name">
             <LogoutButton />
             <TransactionsTable transactions={transactions} />
             <div>
-                <TransactionButton type="entrada" />
-                <TransactionButton type="saida" />
+                <TransactionButton type="entrada" dataTest="new-income" />
+                <TransactionButton type="saida" dataTest="new-expense" />
             </div>
         </MainTemplate>
     );

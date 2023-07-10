@@ -33,37 +33,45 @@ export default function SignupPage() {
             textButton="Cadastrar"
             textLink="Já tem uma conta? Entre agora!"
             routeLink="/"
-            onSubmit={handleSubmit}>
-
+            onSubmit={handleSubmit}
+            dataTestButton="sign-up-submit"
+        >
             <input
                 name="name"
                 type="text"
                 placeholder="Nome"
                 value={form.name}
                 onChange={handleChange}
-                required />
+                required
+                data-test="name"
+            />
             <input
                 name="email"
                 type="email"
                 placeholder="E-mail"
                 value={form.email}
                 onChange={handleChange}
-                required />
+                required
+                data-test="email"
+            />
             <input
                 name="password"
                 type="password"
                 placeholder="Senha"
                 value={form.password}
                 onChange={handleChange}
-                required />
+                required
+                data-test="password"
+            />
             <input
                 name="confirm"
                 type="password"
                 placeholder="Confirme a senha"
                 value={form.confirm}
                 onChange={handleChange}
-                required />
-
+                required
+                data-test="conf-password"
+            />
         </SignTemplate>
     );
 }

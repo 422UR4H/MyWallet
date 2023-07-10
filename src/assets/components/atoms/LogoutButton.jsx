@@ -20,6 +20,6 @@ export default function LogoutButton() {
     }
 
     return (
-        <button onClick={handleClick}>EXIT</button>
+        <button onClick={handleClick} data-test="logout">EXIT</button>
     );
 }

@@ -1,7 +1,7 @@
-export default function MainTemplate({ text, children }) {
+export default function MainTemplate({ text, children, dataTest }) {
     return (
         <>
-            <h1>{text}</h1>
+            <h1 data-test={dataTest}>{text}</h1>
             {children}
         </>
     )

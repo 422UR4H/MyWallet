@@ -1,3 +1,3 @@
-export default function ButtonSubmit({ children }) {
-    return <button type="submit">{children}</button>;
+export default function ButtonSubmit({ children, dataTestButton }) {
+    return <button type="submit" data-test={dataTestButton}>{children}</button>;
 }

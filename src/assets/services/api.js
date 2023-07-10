@@ -10,8 +10,12 @@ export function signUp(body) {
 }
 
 export function signOut(token) {
-    return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, config(token));
+    return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, null, config(token));
 }
 
-// const apiAuth = { signIn, signUp, signOut };
-// export default apiAuth;
+export function getTransactions(token) {
+    return axios.get(`${import.meta.env.VITE_API_URL}/transactions`, config(token));
+}
+
+const api = { signIn, signUp, signOut, getTransactions };
+export default api;

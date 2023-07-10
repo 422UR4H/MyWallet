@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../services/apiAuth.js";
+import api from "../services/api.js";
 import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
 import useToken from "../hooks/useToken.js";
@@ -32,7 +32,7 @@ export default function SigninPage() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        signIn(form)
+        api.signIn(form)
             .then(({ data }) => {
                 login(data);
                 navigate("/home");

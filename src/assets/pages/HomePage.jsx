@@ -1,11 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToken from "../hooks/useToken.js";
 import api from "../services/api.js";
 import handleApiError from "../scripts/handleApiError.js";
+import MainTemplate from "../components/templates/MainTemplate.jsx";
+import LogoutButton from "../components/atoms/LogoutButton.jsx";
+import TransactionsTable from "../components/molecules/TransactionsTable.jsx";
+import TransactionButton from "../components/atoms/TransactionButton.jsx";
+
 
 export default function HomePage() {
-    const { token, setToken } = useToken();
+    const { token } = useToken();
+    const { name, setName } = useState("");
+    const { transactions, setTransactions } = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -14,19 +21,31 @@ export default function HomePage() {
         } else {
             api.getTransactions(token)
                 .then((res) => {
-                    const { type, text, amount, time, userId } = res.data;
-                    // validar se res.data está vazio ou se as variaveis existem
+                    setTransactions(res.data);
                 })
                 .catch((err) => {
-                    console.log(err)
                     handleApiError(err);
                 });
+
+            api.getUser(token)
+                .then((res) => {
+                    setName(res.data.name);
+                })
+                .catch((err) => {
+                    console.err(err);
+                    handleApiError(err);
+                })
         }
     }, []);
 
     return (
-        <>
-            Home
-        </>
+        <MainTemplate text={`Olá, ${name}`}>
+            <LogoutButton />
+            <TransactionsTable />
+            <div>
+                <TransactionButton type="entrada" />
+                <TransactionButton type="saida" />
+            </div>
+        </MainTemplate>
     );
 }

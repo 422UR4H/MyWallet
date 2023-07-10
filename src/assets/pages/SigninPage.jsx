@@ -13,7 +13,7 @@ export default function SigninPage() {
 
     useEffect(() => {
         if (token) {
-            console.log(token)
+            console.log("token " + token)
             navigate("/home");
         }
     }, []);

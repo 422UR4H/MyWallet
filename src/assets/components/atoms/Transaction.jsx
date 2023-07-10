@@ -1,5 +1,4 @@
 export default function Transaction({ type, text, amount, time }) {
-    console.log(typeof amount, amount)
     return (
         <div>
             <span className="time">{time}</span>

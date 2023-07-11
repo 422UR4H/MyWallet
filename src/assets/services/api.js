@@ -20,10 +20,17 @@ export function postTransaction(type, body, token) {
 export function deleteTransaction(id, token) {
     return axios.delete(`${import.meta.env.VITE_API_URL}/transaction/${id}`, config(token));
 }
+export function editTransaction(type, id, token) {
+    return axios.put(`${import.meta.env.VITE_API_URL}/transaction/${type}/${id}`, config(token));
+}
 
 export function getUser(token) {
     return axios.get(`${import.meta.env.VITE_API_URL}/user`, config(token));
 }
 
-const api = { signIn, signUp, signOut, getTransactions, postTransaction, deleteTransaction, getUser };
+const api = {
+    signIn, signUp, signOut,
+    getTransactions, postTransaction, deleteTransaction, editTransaction,
+    getUser
+};
 export default api;

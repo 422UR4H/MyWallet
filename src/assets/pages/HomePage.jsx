@@ -18,7 +18,6 @@ export default function HomePage() {
     console.log(name);
     useEffect(() => {
         async function handleEffect() {
-            debugger
             if (!token) {
                 navigate("/");
             } else {

@@ -19,8 +19,12 @@ export default function Transaction({ _id, type, text, amount, time, updateTrans
         }
     }
 
+    function editTrans() {
+        navigate(`/nova-transacao/${type}`);
+    }
+
     return (
-        <StyledTransaction type={type}>
+        <StyledTransaction type={type} onClick={editTrans}>
             <div>
                 <span className="time">{time}</span>
                 <span className="text" data-test="registry-name">{text}</span>
@@ -29,7 +33,7 @@ export default function Transaction({ _id, type, text, amount, time, updateTrans
                 <span className="amount" data-test="registry-amount">
                     {amount.toFixed(2).replace('.', ',')}
                 </span>
-                <button onClick={handleClick}>X</button>
+                <button onClick={handleClick} data-test="registry-delete">X</button>
             </div>
         </StyledTransaction>
     )

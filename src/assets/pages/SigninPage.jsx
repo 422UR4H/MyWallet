@@ -13,10 +13,7 @@ export default function SigninPage() {
     const { token, login } = useToken();
 
     useEffect(() => {
-        if (token) {
-            console.log("token " + token)
-            navigate("/home");
-        }
+        if (token) navigate("/home");
     }, []);
 
     function handleChange({ target }) {

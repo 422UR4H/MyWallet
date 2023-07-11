@@ -1,27 +1,15 @@
 import styled from "styled-components";
 import Transaction from "../atoms/Transaction.jsx";
 import { useEffect, useState } from "react";
+import getBalance from "../../scripts/getBalance.js";
+
 
 export default function TransactionsTable({ transactions }) {
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(getBalance(transactions));
 
     useEffect(() => {
-        setBalance(transactions?.reduce((sum, t) => {
-            return t.type === "entrada" ? sum + t.amount : sum - t.amount
-        }, 0));
+        setBalance(getBalance(transactions));
     }, [transactions]);
-
-    // function getBalance() {
-    //     let sum = 0;
-    //     transactions?.forEach(t => {
-    //         if (t.type === "entrada") {
-    //             sum += t.amount;
-    //         } else {
-    //             sum -= t.amount;
-    //         }
-    //     });
-    //     return sum;
-    // }
 
     return (
         <StyledTransTable $balance={balance}>
@@ -84,7 +72,7 @@ const StyledTransTable = styled.div`
         }
 
         .balance {
-            color: ${({ balance }) => balance > 0 ? "#03AC00" : "#C70000"};
+            color: ${({ $balance }) => $balance > 0 ? "#03AC00" : "#C70000"};
             font-weight: 400;
         }
     }
@@ -96,6 +84,6 @@ const StyledTransTable = styled.div`
         line-height: 23px;
         text-align: center;
         color: #868686;
-        margin-top: 200px;
+        margin-top: 200px
     }
 `;

@@ -15,22 +15,24 @@ export default function HomePage() {
     const [name, setName] = useState("");
     const [transactions, setTransactions] = useState([]);
 
-    useEffect(() => {
-        if (!token) {
-            navigate("/");
-        } else {
-            api.getTransactions(token)
-                .then((res) => {
-                    setTransactions(res.data);
 
-                    api.getUser(token)
-                        .then((resUser) => setName(resUser.data.name))
-                        .catch((err) => handleApiError(err));
-                })
-                .catch((err) => {
+    useEffect(() => {
+        async function handleEffect() {
+            if (!token) {
+                navigate("/");
+            } else {
+                try {
+                    const resTrans = await api.getTransactions(token);
+                    setTransactions(resTrans.data);
+
+                    const { name } = JSON.parse(localStorage.getItem("token"));
+                    setName(name);
+                } catch (err) {
                     handleApiError(err);
-                });
+                }
+            }
         }
+        handleEffect();
     }, []);
 
     return (

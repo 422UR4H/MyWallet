@@ -24,5 +24,6 @@ export function deleteTransaction(id, token) {
 export function getUser(token) {
     return axios.get(`${import.meta.env.VITE_API_URL}/user`, config(token));
 }
+
 const api = { signIn, signUp, signOut, getTransactions, postTransaction, deleteTransaction, getUser };
 export default api;

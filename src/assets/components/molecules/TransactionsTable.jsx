@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import getBalance from "../../scripts/getBalance.js";
 
 
-export default function TransactionsTable({ transactions }) {
+export default function TransactionsTable({ transactions, updateTrans }) {
     const [balance, setBalance] = useState(getBalance(transactions));
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function TransactionsTable({ transactions }) {
             {transactions.length > 0 ?
                 <>
                     <div>
-                        {transactions?.map(t => <Transaction key={t._id} {...t} />)}
+                        {transactions?.map(t => <Transaction key={t._id} {...t} updateTrans={updateTrans} />)}
                     </div>
                     <footer>
                         <span>SALDO </span>

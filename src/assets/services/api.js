@@ -18,7 +18,7 @@ export function postTransaction(type, body, token) {
     return axios.post(`${import.meta.env.VITE_API_URL}/transaction/${type}`, body, config(token));
 }
 export function deleteTransaction(id, token) {
-    return axios.delete(`${import.meta.env.VITE_API_URL}/${id}`, config(token));
+    return axios.delete(`${import.meta.env.VITE_API_URL}/transaction/${id}`, config(token));
 }
 
 export function getUser(token) {

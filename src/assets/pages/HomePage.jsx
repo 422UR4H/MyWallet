@@ -15,17 +15,20 @@ export default function HomePage() {
     const [name, setName] = useState("");
     const [transactions, setTransactions] = useState([]);
 
-
+    console.log(name);
     useEffect(() => {
         async function handleEffect() {
+            debugger
             if (!token) {
                 navigate("/");
             } else {
                 try {
+                    console.log(token)
                     const resTrans = await api.getTransactions(token);
                     setTransactions(resTrans.data);
 
                     const { name } = JSON.parse(localStorage.getItem("token"));
+                    console.log(token, name);
                     setName(name);
                 } catch (err) {
                     handleApiError(err);
@@ -35,10 +38,15 @@ export default function HomePage() {
         handleEffect();
     }, []);
 
+    async function updateTrans(token) {
+        const resTrans = await api.getTransactions(token);
+        setTransactions(resTrans.data);
+    }
+
     return (
         <MainTemplate textHeader={`Olá, ${name}`} dataTest="user-name">
             <LogoutButton />
-            <TransactionsTable transactions={transactions} />
+            <TransactionsTable transactions={transactions} updateTrans={updateTrans} />
             <div className="container-buttons">
                 <TransactionButton type="entrada" dataTest="new-income" />
                 <TransactionButton type="saida" dataTest="new-expense" />

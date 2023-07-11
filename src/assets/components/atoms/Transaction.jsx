@@ -1,18 +1,20 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 import useToken from "../../hooks/useToken.js";
 import handleType from "../../scripts/handleType.js"
 import api from "../../services/api.js"
 import { useNavigate } from "react-router-dom";
 import handleApiError from "../../scripts/handleApiError.js";
 
-export default function Transaction({ _id, type, text, amount, time }) {
+export default function Transaction({ _id, type, text, amount, time, updateTrans }) {
     const navigate = useNavigate();
     const { token } = useToken();
 
     function handleClick() {
         if (confirm(`Deseja apagar essa ${handleType(type)}?`)) {
             api.deleteTransaction(_id, token)
-                .then(() => navigate("/home"))
+                .then(() => {
+                    updateTrans(token);
+                })
                 .catch((err) => handleApiError(err));
         }
     }

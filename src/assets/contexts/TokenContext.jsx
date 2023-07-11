@@ -4,7 +4,7 @@ const TokenContext = createContext();
 
 export function TokenProvider({ children }) {
     const lsToken = JSON.parse(localStorage.getItem("token"));
-    const [token, setToken] = useState(lsToken);
+    const [token, setToken] = useState(lsToken?.token);
 
     function login(auth) {
         setToken(auth.token);

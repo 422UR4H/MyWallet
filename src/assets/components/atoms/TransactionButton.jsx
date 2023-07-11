@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import minusImg from "../../images/minus-circle-outlined.png";
+import plusImg from "../../images/plus-circle-outlined.png";
 import handleType from "../../scripts/handleType.js";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function TransactionButton({ type, dataTest }) {
     const navigate = useNavigate();
@@ -15,7 +17,7 @@ export default function TransactionButton({ type, dataTest }) {
 
     return (
         <StyledTransButton onClick={handleClick} data-test={dataTest}>
-            <span>X</span>
+            <img src={type === "entrada" ? plusImg : minusImg} alt={type} />
             <span>Nova<br />{handleType(type)}</span>
         </StyledTransButton>
     );

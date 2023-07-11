@@ -11,18 +11,26 @@ import MainTemplate from "../components/templates/MainTemplate.jsx";
 
 export default function EditTransactionPage() {
     const [form, setForm] = useState({ amount: "", text: "" });
-    const { token } = useToken();
     const { tipo, id } = useParams();
+    const { token } = useToken();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!token) navigate("/")
+        if (!token) {
+            navigate("/");
+        }
+        else {
+            console.log(token, id);
+            api.getTransaction(id, token)
+                .then(({ data }) => setForm({ amount: data.amount, text: data.text }))
+                .catch((err) => handleApiError(err));
+        }
     }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        api.postTransaction(tipo, form, token)
+        api.editTransaction(tipo, id, token, form)
             .then(() => navigate("/home"))
             .catch((err) => handleApiError(err));
     }
@@ -32,11 +40,11 @@ export default function EditTransactionPage() {
     }
 
     return (
-        <MainTemplate textHeader={`Nova ${handleType(tipo)}`}>
+        <MainTemplate textHeader={`Editar ${handleType(tipo)}`}>
             {/* <h1>Nova {handleType(tipo)}</h1> */}
 
             <Form
-                textButton={`Salvar ${handleType(tipo)}`}
+                textButton={`Atualizar ${handleType(tipo)}`}
                 onSubmit={handleSubmit}
                 dataTestButton="registry-save"
             >

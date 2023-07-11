@@ -11,6 +11,9 @@ export function signOut(token) {
     return axios.post(`${import.meta.env.VITE_API_URL}/sign-out`, null, config(token));
 }
 
+export function getTransaction(id, token) {
+    return axios.get(`${import.meta.env.VITE_API_URL}/transaction/${id}`, config(token));
+}
 export function getTransactions(token) {
     return axios.get(`${import.meta.env.VITE_API_URL}/transactions`, config(token));
 }
@@ -20,8 +23,8 @@ export function postTransaction(type, body, token) {
 export function deleteTransaction(id, token) {
     return axios.delete(`${import.meta.env.VITE_API_URL}/transaction/${id}`, config(token));
 }
-export function editTransaction(type, id, token) {
-    return axios.put(`${import.meta.env.VITE_API_URL}/transaction/${type}/${id}`, config(token));
+export function editTransaction(type, id, token, body) {
+    return axios.put(`${import.meta.env.VITE_API_URL}/transaction/${type}/${id}`, body, config(token));
 }
 
 export function getUser(token) {
@@ -30,7 +33,7 @@ export function getUser(token) {
 
 const api = {
     signIn, signUp, signOut,
-    getTransactions, postTransaction, deleteTransaction, editTransaction,
+    getTransaction, getTransactions, postTransaction, deleteTransaction, editTransaction,
     getUser
 };
 export default api;

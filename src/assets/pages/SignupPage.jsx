@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
 import api from "../services/api.js";
+import Input from "../components/styles/Input.js";
 
 
 export default function SignupPage() {
@@ -37,7 +38,7 @@ export default function SignupPage() {
             onSubmit={handleSubmit}
             dataTestButton="sign-up-submit"
         >
-            <input
+            <Input
                 name="name"
                 type="text"
                 placeholder="Nome"
@@ -45,8 +46,8 @@ export default function SignupPage() {
                 onChange={handleChange}
                 required
                 data-test="name"
-            />
-            <input
+            ></Input>
+            <Input
                 name="email"
                 type="email"
                 placeholder="E-mail"
@@ -54,8 +55,8 @@ export default function SignupPage() {
                 onChange={handleChange}
                 required
                 data-test="email"
-            />
-            <input
+            ></Input>
+            <Input
                 name="password"
                 type="password"
                 placeholder="Senha"
@@ -63,8 +64,8 @@ export default function SignupPage() {
                 onChange={handleChange}
                 required
                 data-test="password"
-            />
-            <input
+            ></Input>
+            <Input
                 name="confirm"
                 type="password"
                 placeholder="Confirme a senha"
@@ -72,7 +73,7 @@ export default function SignupPage() {
                 onChange={handleChange}
                 required
                 data-test="conf-password"
-            />
+            ></Input>
         </SignTemplate>
     );
 }

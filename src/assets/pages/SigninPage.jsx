@@ -4,6 +4,7 @@ import SignTemplate from "../components/templates/SignTemplate.jsx";
 import handleApiError from "../scripts/handleApiError.js";
 import useToken from "../hooks/useToken.js";
 import api from "../services/api.js";
+import Input from "../components/styles/Input.js";
 
 
 export default function SigninPage() {
@@ -43,7 +44,7 @@ export default function SigninPage() {
             onSubmit={handleSubmit}
             dataTestButton="sign-in-submit"
         >
-            <input
+            <Input
                 name="email"
                 type="email"
                 placeholder="E-mail"
@@ -52,7 +53,7 @@ export default function SigninPage() {
                 required
                 data-test="email"
             />
-            <input
+            <Input
                 name="password"
                 type="password"
                 placeholder="Senha"

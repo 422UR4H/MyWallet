@@ -1,10 +1,16 @@
+import { styled } from "styled-components";
 import ButtonSubmit from "../atoms/ButtonSubmit.jsx";
 
 export default function Form({ children, textButton, onSubmit, dataTestButton }) {
     return (
-        <form onSubmit={onSubmit}>
+        <StyledForm onSubmit={onSubmit}>
             {children}
             <ButtonSubmit dataTestButton={dataTestButton}>{textButton}</ButtonSubmit>
-        </form>
+        </StyledForm>
     );
 }
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;

@@ -1,8 +1,17 @@
+import { styled } from "styled-components";
+import MainTemplate from "../components/templates/MainTemplate.jsx";
+
 export default function ErrorPage() {
     return (
-        <>
-            <h1>Error 404</h1>
-            <h2>Página não encontrada</h2>
-        </>
+        <MainTemplate textHeader="Error 404">
+            <StyledErrorPage>
+                Página não encontrada
+            </StyledErrorPage>
+        </MainTemplate>
     );
 }
+
+const StyledErrorPage = styled.h2`
+    color: white;
+    font-size: 20px;
+`;

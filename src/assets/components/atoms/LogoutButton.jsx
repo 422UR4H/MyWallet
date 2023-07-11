@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../services/api.js";
 import useToken from "../../hooks/useToken.js";
+import { styled } from "styled-components";
 
 export default function LogoutButton() {
     const navigate = useNavigate();
@@ -20,6 +21,18 @@ export default function LogoutButton() {
     }
 
     return (
-        <button onClick={handleClick} data-test="logout">EXIT</button>
+        <StyledLogoutButton onClick={handleClick} data-test="logout">
+            EXIT
+        </StyledLogoutButton>
     );
 }
+
+const StyledLogoutButton = styled.button`
+    color: white;
+    border: none;
+    background-color: inherit;
+
+    position: fixed;
+    top: 28px;
+    right: 24px;
+`;

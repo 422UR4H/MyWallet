@@ -30,15 +30,14 @@ export default function HomePage() {
                 .catch((err) => {
                     handleApiError(err);
                 });
-
         }
     }, []);
 
     return (
-        <MainTemplate text={`Olá, ${name}`} dataTest="user-name">
+        <MainTemplate textHeader={`Olá, ${name}`} dataTest="user-name">
             <LogoutButton />
             <TransactionsTable transactions={transactions} />
-            <div>
+            <div className="container-buttons">
                 <TransactionButton type="entrada" dataTest="new-income" />
                 <TransactionButton type="saida" dataTest="new-expense" />
             </div>

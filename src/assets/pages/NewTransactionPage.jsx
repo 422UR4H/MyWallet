@@ -5,6 +5,8 @@ import api from "../services/api.js";
 import useToken from "../hooks/useToken.js";
 import handleType from "../scripts/handleType.js";
 import handleApiError from "../scripts/handleApiError.js";
+import Input from "../components/styles/Input.js";
+import MainTemplate from "../components/templates/MainTemplate.jsx";
 
 
 export default function NewTransactionPage() {
@@ -30,15 +32,15 @@ export default function NewTransactionPage() {
     }
 
     return (
-        <>
-            <h1>Nova {handleType(tipo)}</h1>
+        <MainTemplate textHeader={`Nova ${handleType(tipo)}`}>
+            {/* <h1>Nova {handleType(tipo)}</h1> */}
 
             <Form
                 textButton={`Salvar ${handleType(tipo)}`}
                 onSubmit={handleSubmit}
                 dataTestButton="registry-save"
             >
-                <input
+                <Input
                     name="amount"
                     type="number"
                     placeholder="Valor"
@@ -47,7 +49,7 @@ export default function NewTransactionPage() {
                     required
                     data-test="registry-amount-input"
                 />
-                <input
+                <Input
                     name="text"
                     type="text"
                     placeholder="Descrição"
@@ -57,6 +59,6 @@ export default function NewTransactionPage() {
                     data-test="registry-name-input"
                 />
             </Form>
-        </>
+        </MainTemplate>
     );
 }
